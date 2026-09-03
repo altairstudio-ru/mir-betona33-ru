@@ -1,0 +1,51 @@
+# Dependencies & build artifacts
+node_modules/
+dist/
+.astro/
+.vercel/
+.netlify/
+build/
+.cache/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment & secrets
+.env
+.env.local
+.env.*.local
+!.env.example
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Skills & tooling (не для публичного репо)
+.agents/
+.repowise/
+skills-lock.json
+.claude/
+.cursorrules
+
+# Вложенные репозитории и артефакты других проектов
+yandex-marketing-mcp/
+yandex-direct/
+seo/
+yandex_direct_ad_content.csv
+
+# Временные файлы
+*.tmp
+*.bak
+*.orig
+*.zip
+*.rar
+*.7z

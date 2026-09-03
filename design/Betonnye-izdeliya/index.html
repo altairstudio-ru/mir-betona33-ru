@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мир Бетонных Изделий — Производство и поставка ЖБИ во Владимире и области</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #ffffff;
+            --ink: #0b0d12;
+            --ink-2: #404755;
+            --ink-3: #6b7280;
+            --line: #e6e8ec;
+            --line-2: #d1d5db;
+            --line-3: #f1f3f5;
+            --primary: #1e3a8a;
+            --primary-hover: #1e40af;
+            --accent: #c2410c;
+            --accent-hover: #9a3412;
+            --tint: #fff7ed;
+            --tint-cool: #f8fafc;
+        }
+
+        * { box-sizing: border-box; }
+        body {
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+            color: var(--ink-2);
+            background: var(--bg);
+            margin: 0;
+            line-height: 1.55;
+            -webkit-font-smoothing: antialiased;
+        }
+        .wrap { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+        h1, h2, h3, h4 { color: var(--ink); font-weight: 600; letter-spacing: -0.01em; margin: 0 0 .5em 0; }
+        h1 { font-size: 44px; line-height: 1.1; letter-spacing: -0.02em; }
+        h2 { font-size: 30px; line-height: 1.2; letter-spacing: -0.015em; }
+        h3 { font-size: 20px; line-height: 1.3; }
+        p  { margin: 0 0 1em 0; }
+        a { color: var(--accent); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        /* Nav */
+        header.nav {
+            border-bottom: 1px solid var(--line);
+            padding: 14px 0; position: sticky; top: 0; background: rgba(255,255,255,.92);
+            backdrop-filter: blur(8px); z-index: 100;
+        }
+        .nav-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+        .brand { font-weight: 700; color: var(--ink); font-size: 18px; letter-spacing: -0.01em; }
+        .brand span { color: var(--primary); }
+        .nav-cta { display: flex; gap: 8px; align-items: center; }
+        .nav-phone { font-size: 14px; color: var(--ink-2); font-weight: 500; }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+            padding: 10px 18px; border-radius: 6px; font-weight: 500; font-size: 15px;
+            cursor: pointer; transition: all .15s ease; border: 1px solid transparent;
+            text-decoration: none; line-height: 1.2;
+        }
+        .btn:hover { text-decoration: none; }
+        .btn-primary { background: var(--primary); color: #fff; }
+        .btn-primary:hover { background: var(--primary-hover); }
+        .btn-accent  { background: var(--accent);  color: #fff; }
+        .btn-accent:hover  { background: var(--accent-hover); }
+        .btn-ghost   { background: transparent; border-color: var(--line-2); color: var(--ink); }
+        .btn-ghost:hover { border-color: var(--ink-3); }
+        .btn-lg { padding: 14px 24px; font-size: 16px; }
+        .btn-sm { padding: 7px 12px; font-size: 14px; }
+
+        /* Hero */
+        .hero { padding: 80px 0 64px; }
+        .hero-eyebrow {
+            display: inline-block; font-size: 13px; font-weight: 500;
+            color: var(--accent); background: var(--tint);
+            padding: 6px 12px; border-radius: 999px; margin-bottom: 20px;
+            letter-spacing: 0.02em;
+        }
+        .hero h1 { max-width: 880px; }
+        .hero h1 em { font-style: normal; color: var(--accent); }
+        .hero .sub { max-width: 680px; font-size: 18px; color: var(--ink-2); margin-top: 12px; }
+        .seg-cta { display: flex; gap: 12px; margin-top: 28px; flex-wrap: wrap; align-items: center; }
+        .seg-note { font-size: 14px; color: var(--ink-3); margin-top: 16px; }
+        .seg-note a { color: var(--ink); text-decoration: underline; }
+
+        /* Numbers */
+        .stats { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 32px 0; }
+        .stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+        .stat .n { font-size: 32px; font-weight: 700; color: var(--ink); letter-spacing: -0.02em; line-height: 1; }
+        .stat .l { font-size: 14px; color: var(--ink-3); margin-top: 6px; }
+
+        /* Section */
+        section.block { padding: 72px 0; }
+        .sec-head { max-width: 720px; margin-bottom: 40px; }
+        .sec-head .tag { font-size: 13px; font-weight: 500; color: var(--accent); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 8px; }
+
+        /* Products */
+        .prod-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+        .prod { border: 1px solid var(--line); border-radius: 8px; padding: 16px; display: flex; justify-content: space-between; align-items: center; }
+        .prod .name { font-weight: 500; color: var(--ink); font-size: 15px; }
+        .prod .meta { font-size: 13px; color: var(--ink-3); }
+
+        /* FBS table */
+        .fbs-table {
+            border: 1px solid var(--line); border-radius: 8px; overflow: hidden;
+        }
+        .fbs-row {
+            display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr; gap: 0;
+            border-bottom: 1px solid var(--line);
+        }
+        .fbs-row:last-child { border-bottom: none; }
+        .fbs-row > div { padding: 14px 16px; font-size: 14px; }
+        .fbs-row.head > div {
+            background: var(--tint-cool); font-weight: 600; color: var(--ink);
+            font-size: 13px; text-transform: uppercase; letter-spacing: 0.04em;
+        }
+        .fbs-row:not(.head) > div { border-right: 1px solid var(--line-3); }
+        .fbs-row:not(.head) > div:last-child { border-right: none; }
+
+        /* About */
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
+        .about-stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+        .about-stat { border-left: 3px solid var(--accent); padding-left: 14px; }
+        .about-stat .n { font-size: 24px; font-weight: 700; color: var(--ink); }
+        .about-stat .l { font-size: 13px; color: var(--ink-3); margin-top: 4px; }
+
+        /* Photo placeholders */
+        .photo-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 12px; }
+        .photo {
+            aspect-ratio: 4/3; background: var(--line-3); border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--ink-3); font-size: 13px; text-align: center; padding: 12px;
+        }
+        .photo.tall { grid-row: span 2; aspect-ratio: 4/6; }
+
+        /* Delivery */
+        .delivery-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: start; }
+        .delivery-list { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 24px; }
+        .delivery-list li { list-style: none; font-size: 15px; padding: 6px 0; border-bottom: 1px dashed var(--line); }
+        .delivery-list ul { padding: 0; margin: 0; }
+        .map-placeholder {
+            aspect-ratio: 4/3; background: var(--tint-cool);
+            border: 1px solid var(--line); border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--ink-3); font-size: 13px;
+        }
+
+        /* Steps */
+        .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+        .step { background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 20px; }
+        .step .num {
+            display: inline-flex; align-items: center; justify-content: center;
+            width: 28px; height: 28px; border-radius: 50%;
+            background: var(--accent); color: #fff; font-size: 13px; font-weight: 600;
+            margin-bottom: 12px;
+        }
+        .step h4 { font-size: 16px; margin-bottom: 6px; }
+        .step p { font-size: 14px; color: var(--ink-3); margin: 0; }
+
+        /* Reviews */
+        .reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+        .review { border: 1px solid var(--line); border-radius: 8px; padding: 20px; }
+        .review-text { font-size: 15px; color: var(--ink-2); margin-bottom: 16px; }
+        .review-author { font-size: 14px; }
+        .review-author .name { font-weight: 600; color: var(--ink); }
+        .review-author .role { color: var(--ink-3); margin-top: 2px; }
+        .stars { color: #f59e0b; margin-bottom: 12px; }
+
+        /* Lead magnet */
+        .lead-magnet {
+            background: var(--tint-cool); border: 1px solid var(--line);
+            border-radius: 12px; padding: 40px;
+            display: grid; grid-template-columns: 1.4fr 1fr; gap: 32px; align-items: center;
+        }
+        .lead-magnet h2 { margin-bottom: 12px; }
+        .lead-magnet p { margin-bottom: 0; color: var(--ink-2); }
+        .lead-form { display: flex; flex-direction: column; gap: 8px; }
+        .lead-form input {
+            padding: 12px 14px; border: 1px solid var(--line-2); border-radius: 6px;
+            font-size: 15px; font-family: inherit;
+        }
+        .lead-form input:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+
+        /* FAQ */
+        .faq { border-top: 1px solid var(--line); }
+        .faq-item { border-bottom: 1px solid var(--line); padding: 20px 0; }
+        .faq-item summary {
+            font-weight: 500; color: var(--ink); cursor: pointer; list-style: none;
+            display: flex; justify-content: space-between; align-items: center; font-size: 16px;
+        }
+        .faq-item summary::-webkit-details-marker { display: none; }
+        .faq-item summary::after { content: '+'; font-size: 22px; color: var(--ink-3); }
+        .faq-item[open] summary::after { content: '−'; }
+        .faq-item p { margin: 12px 0 0; color: var(--ink-2); font-size: 15px; }
+
+        /* Final CTA */
+        .final-cta { background: var(--ink); color: #fff; padding: 72px 0; text-align: center; }
+        .final-cta h2 { color: #fff; }
+        .final-cta p { color: #94a3b8; max-width: 600px; margin: 0 auto 28px; }
+        .final-cta .row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+        .final-cta .wholesale {
+            margin-top: 32px; padding-top: 24px; border-top: 1px solid #1f2937;
+            color: #94a3b8; font-size: 15px;
+        }
+        .final-cta .wholesale a { color: #fff; font-weight: 500; }
+        .final-cta .wholesale strong { color: #fff; }
+
+        /* Footer */
+        footer { border-top: 1px solid var(--line); padding: 32px 0; color: var(--ink-3); font-size: 14px; }
+        footer .row { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+
+        /* Responsive */
+        @media (max-width: 860px) {
+            h1 { font-size: 32px; }
+            h2 { font-size: 24px; }
+            .stats-row { grid-template-columns: repeat(2, 1fr); }
+            .prod-grid, .steps, .reviews-grid, .about-grid, .delivery-grid, .lead-magnet, .photo-grid { grid-template-columns: 1fr; }
+            .about-stats, .delivery-list { grid-template-columns: 1fr; }
+            .photo.tall { grid-row: auto; aspect-ratio: 4/3; }
+            .fbs-row { grid-template-columns: 1.4fr 1fr 1fr; }
+            .fbs-row > div:nth-child(4), .fbs-row > div:nth-child(5) { display: none; }
+            .fbs-row.head > div:nth-child(4), .fbs-row.head > div:nth-child(5) { display: none; }
+            .hero { padding: 48px 0 32px; }
+            section.block { padding: 48px 0; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ===================== NAV ===================== -->
+<header class="nav">
+    <div class="wrap nav-row">
+        <a href="#" class="brand">Мир<span>Бетона33</span>.ru</a>
+        <div class="nav-cta">
+            <a href="tel:+70000000000" class="nav-phone">+7 (000) 000-00-00</a>
+            <a href="#contact" class="btn btn-accent btn-sm">Получить расчёт</a>
+        </div>
+    </div>
+</header>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero">
+    <div class="wrap">
+        <span class="hero-eyebrow">ЖБИ · Фундаменты · Плиты перекрытия · Брусчатка</span>
+        <h1>Бетонные изделия с паспортом партии — от 3 дней на объекте.</h1>
+        <p class="sub">
+            Считаем объём под ваш проект, привозим точно в день монтажа. Без посредников, с документами на каждую поставку.
+        </p>
+        <div class="seg-cta">
+            <a href="#contact" class="btn btn-accent btn-lg">Получить расчёт под ваш проект →</a>
+        </div>
+        <p class="seg-note">
+            Крупные заказы — индивидуальные условия. Звоните: <a href="tel:+70000000000">+7 (000) 000-00-00</a>
+        </p>
+    </div>
+</section>
+
+<!-- ===================== NUMBERS ===================== -->
+<section class="stats">
+    <div class="wrap stats-row">
+        <div class="stat"><div class="n">18</div><div class="l">лет на рынке</div></div>
+        <div class="stat"><div class="n">120 000 м³</div><div class="l">в год — оборот производства</div></div>
+        <div class="stat"><div class="n">340</div><div class="l">сданных объектов</div></div>
+        <div class="stat"><div class="n">от 3 дней</div><div class="l">от заявки до отгрузки</div></div>
+    </div>
+</section>
+
+<!-- ===================== PRODUCTS ===================== -->
+<section class="block">
+    <div class="wrap">
+        <div class="sec-head">
+            <div class="tag">Продукция</div>
+            <h2>Что производим и поставляем</h2>
+            <p>Все изделия — с паспортом партии и сертификатом соответствия. Доставка по региону своим автопарком.</p>
+        </div>
+        <div class="prod-grid">
+            <div class="prod"><div class="name">Фундаментные блоки (ФБС)</div><div class="meta">от 4 200 ₽/шт</div></div>
+            <div class="prod"><div class="name">Плиты перекрытия ПК / ПБ</div><div class="meta">от 6 800 ₽/шт</div></div>
+            <div class="prod"><div class="name">Бетон товарный (М100–М400)</div><div class="meta">от 4 900 ₽/м³</div></div>
+            <div class="prod"><div class="name">Кольца колодезные, лотки</div><div class="meta">от 3 100 ₽/шт</div></div>
+            <div class="prod"><div class="name">Брусчатка, бордюры</div><div class="meta">от 950 ₽/м²</div></div>
+            <div class="prod"><div class="name">Сваи, балки, перемычки</div><div class="meta">по чертежу</div></div>
+        </div>
+        <p style="margin-top:20px; font-size:13px; color:var(--ink-3);">* Цены ориентировочные. Финальная стоимость зависит от объёма, марки и логистики — расчёт за 1 рабочий день.</p>
+    </div>
+</section>
+
+<!-- ===================== FBS TABLE (ГОСТ 13579-78) ===================== -->
+<section class="block" style="background: var(--tint-cool);">
+    <div class="wrap">
+        <div class="sec-head">
+            <div class="tag">Сортамент</div>
+            <h2>Фундаментные блоки ФБС — размеры и вес</h2>
+            <p>Производим по ГОСТ 13579-78. Марка бетона по умолчанию М100–М200, морозостойкость F50, водонепроницаемость W2. Другие марки — по запросу.</p>
+        </div>
+
+        <div class="fbs-table">
+            <div class="fbs-row head">
+                <div>Марка</div><div>Длина, мм</div><div>Ширина, мм</div><div>Высота, мм</div><div>Вес, кг</div>
+            </div>
+            <div class="fbs-row"><div>ФБС 24-3-6</div><div>2380</div><div>300</div><div>580</div><div>970</div></div>
+            <div class="fbs-row"><div>ФБС 24-4-6</div><div>2380</div><div>400</div><div>580</div><div>1300</div></div>
+            <div class="fbs-row"><div>ФБС 24-5-6</div><div>2380</div><div>500</div><div>580</div><div>1630</div></div>
+            <div class="fbs-row"><div>ФБС 24-6-6</div><div>2380</div><div>600</div><div>580</div><div>1960</div></div>
+            <div class="fbs-row"><div>ФБС 12-4-6</div><div>1180</div><div>400</div><div>580</div><div>640</div></div>
+            <div class="fbs-row"><div>ФБС 12-5-6</div><div>1180</div><div>500</div><div>580</div><div>790</div></div>
+            <div class="fbs-row"><div>ФБС 9-3-6</div><div>880</div><div>300</div><div>580</div><div>350</div></div>
+            <div class="fbs-row"><div>ФБС 9-4-6</div><div>880</div><div>400</div><div>580</div><div>470</div></div>
+        </div>
+        <p style="margin-top:16px; font-size:13px; color:var(--ink-3);">Не нашли нужный размер? Изготовим по вашему чертежу от 50 шт. Срок — от 7 рабочих дней.</p>
+    </div>
+</section>
+
+<!-- ===================== ABOUT ===================== -->
+<section class="block">
+    <div class="wrap">
+        <div class="about-grid">
+            <div>
+                <div class="sec-head">
+                    <div class="tag">О производстве</div>
+                    <h2>Завод в [ВСТАВИТЬ ГОРОД] с 2006 года</h2>
+                    <p>Собственное производство на двух линиях: товарный бетон и формовочный цех ЖБИ. Лаборатория контроля качества, склад готовой продукции на [ВСТАВИТЬ] м², парк миксеров и манипуляторов.</p>
+                    <p>Не перепродаём чужое — делаем сами. Это значит фиксированная цена в договоре и контроль на каждом этапе: от приёмки цемента до отгрузки на ваш объект.</p>
+                </div>
+            </div>
+            <div>
+                <div class="about-stats">
+                    <div class="about-stat"><div class="n">2 линии</div><div class="l">бетон + ЖБИ</div></div>
+                    <div class="about-stat"><div class="n">24/7</div><div class="l">отгрузка в выходные</div></div>
+                    <div class="about-stat"><div class="n">[ВСТАВИТЬ] м²</div><div class="l">склад готовой продукции</div></div>
+                    <div class="about-stat"><div class="n">12 машин</div><div class="l">свой автопарк</div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===================== PHOTOS ===================== -->
+<section class="block" style="background: var(--tint-cool);">
+    <div class="wrap">
+        <div class="sec-head">
+            <div class="tag">Производство</div>
+            <h2>Как выглядит наш завод</h2>
+            <p>Реальные фото со склада и производственной площадки. Без стоковых картинок.</p>
+        </div>
+        <div class="photo-grid">
+            <div class="photo tall">📷<br>Фото: цех ЖБИ<br>[ВСТАВИТЬ]</div>
+            <div class="photo">📷<br>Склад ФБС</div>
+            <div class="photo">📷<br>Бетонный узел</div>
+            <div class="photo">📷<br>Отгрузка</div>
+            <div class="photo">📷<br>Лаборатория</div>
+        </div>
+    </div>
+</section>
+
+<!-- ===================== DELIVERY ===================== -->
+<section class="block">
+    <div class="wrap">
+        <div class="sec-head">
+            <div class="tag">Логистика</div>
+            <h2>Доставка по [ВСТАВИТЬ РЕГИОН] и соседним областям</h2>
+            <p>Свой автопарк миксеров и длинномеров. Считаем стоимость доставки по километражу, без скрытых надбавок.</p>
+        </div>
+
+        <div class="delivery-grid">
+            <ul class="delivery-list">
+                <li>📍 [ВСТАВИТЬ ГОРОД] — от 0 ₽ (в пределах города)</li>
+                <li>📍 [ВСТАВИТЬ РАЙОН 1]</li>
+                <li>📍 [ВСТАВИТЬ РАЙОН 2]</li>
+                <li>📍 [ВСТАВИТЬ РАЙОН 3]</li>
+                <li>📍 [ВСТАВИТЬ СОСЕДНИЙ РЕГИОН 1]</li>
+                <li>📍 [ВСТАВИТЬ СОСЕДНИЙ РЕГИОН 2]</li>
+                <li>📍 [ВСТАВИТЬ СОСЕДНИЙ РЕГИОН 3]</li>
+                <li>📍 [ВСТАВИТЬ СОСЕДНИЙ РЕГИОН 4]</li>
+            </ul>
+            <div class="map-placeholder">
+                🗺️ Карта зоны доставки<br>[ВСТАВИТЬ ИНТЕРАКТИВНУЮ КАРТУ — Yandex Maps / 2GIS embed]
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===================== HOW WE WORK ===================== -->
+<section class="block" id="how">
+    <div class="wrap">
+        <div class="sec-head">
+            <div class="tag">Как работаем</div>
+            <h2>От заявки до монтажа — 4 шага</h2>
+            <p>Без лишних звонков и согласований. Прозрачный процесс — знаете, что и когда произойдёт.</p>
+        </div>
+
+        <div class="steps">
+            <div class="step">
+                <div class="num">1</div>
+                <h4>Заявка и расчёт</h4>
+                <p>Присылаете план или размеры. Считаем объём, марку, стоимость за 1 день.</p>
+            </div>
+            <div class="step">
+                <div class="num">2</div>
+                <h4>Согласование</h4>
+                <p>Подбираем марку под ваш грунт и нагрузку. Фиксируем цену в договоре.</p>
+            </div>
+            <div class="step">
+                <div class="num">3</div>
+                <h4>Доставка</h4>
+                <p>Привозим своим транспортом в назначенный день. С паспортом партии.</p>
+            </div>
+            <div class="step">
+                <div class="num">4</div>
+                <h4>Монтаж и контроль</h4>
+                <p>По запросу — наша бригада делает укладку. Контроль качества на каждом этапе.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===================== REVIEWS ===================== -->
+<section class="block" style="background: var(--tint-cool);">
+    <div class="wrap">
+        <div class="sec-head">
+            <div class="tag">Отзывы</div>
+            <h2>Что говорят клиенты</h2>
+        </div>
+
+        <div class="reviews-grid">
+            <div class="review">
+                <div class="stars">★★★★★</div>
+                <p class="review-text">Заказывали ФБС на фундамент дома. Привезли точно в день, марка в паспорте совпала. Цена не выросла за неделю, пока ждали технику.</p>
+                <div class="review-author">
+                    <div class="name">[ВСТАВИТЬ ИМЯ]</div>
+                    <div class="role">Частный заказчик, [ВСТАВИТЬ РАЙОН]</div>
+                </div>
+            </div>
+            <div class="review">
+                <div class="stars">★★★★★</div>
+                <p class="review-text">Работаем вторую зиму. График отгрузок не срывают, документы в порядке, лаборатория приезжает на объект. Для подрядчика это критично.</p>
+                <div class="review-author">
+                    <div class="name">[ВСТАВИТЬ ИМЯ]</div>
+                    <div class="role">Прораб, [ВСТАВИТЬ КОМПАНИЯ]</div>
+                </div>
+            </div>
+            <div class="review">
+                <div class="stars">★★★★★</div>
+                <p class="review-text">Брали бетон М300 на площадку. 12 машин за 2 дня, без накладок. По объёму — ровно столько, сколько в накладной.</p>
+                <div class="review-author">
+                    <div class="name">[ВСТАВИТЬ ИМЯ]</div>
+                    <div class="role">Бригадир, [ВСТАВИТЬ ОБЪЕКТ]</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===================== LEAD MAGNET ===================== -->
+<section class="block">
+    <div class="wrap">
+        <div class="lead-magnet">
+            <div>
+                <h2>Скачайте прайс-лист на ЖБИ</h2>
+                <p>Полный каталог ФБС, плит, бетона, брусчатки с актуальными ценами и наличием на складе. Пришлём на почту за 1 минуту.</p>
+            </div>
+            <form class="lead-form" onsubmit="event.preventDefault(); alert('Спасибо! Прайс придёт на почту в течение минуты (демо).');">
+                <input type="email" placeholder="Ваш email" required>
+                <input type="text" placeholder="Как к вам обращаться?">
+                <button type="submit" class="btn btn-accent btn-lg">Скачать прайс →</button>
+                <small style="color: var(--ink-3); font-size: 12px;">Нажимая кнопку, вы соглашаетесь с обработкой персональных данных.</small>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- ===================== FAQ ===================== -->
+<section class="block">
+    <div class="wrap">
+        <div class="sec-head">
+            <div class="tag">Частые вопросы</div>
+            <h2>Что обычно спрашивают перед заказом</h2>
+        </div>
+
+        <div class="faq">
+            <details class="faq-item">
+                <summary>Сколько стоит куб бетона с доставкой?</summary>
+                <p>Цена зависит от марки (М100–М400), расстояния до объекта и объёма. Базовый прайс: от 4 900 ₽/м³ с НДС. Точную смету пришлём за 1 рабочий день после заявки.</p>
+            </details>
+            <details class="faq-item">
+                <summary>Какой минимальный объём вы возите?</summary>
+                <p>От 1 м³ — привезём миксером. Для частных заказчиков это стандартная поставка, без наценок за «малый объём».</p>
+            </details>
+            <details class="faq-item">
+                <summary>Сколько идёт доставка после заявки?</summary>
+                <p>Стандартно — от 3 рабочих дней на товарный бетон, от 5 дней — на ЖБИ (ФБС, плиты). Срочные отгрузки обсуждаются индивидуально.</p>
+            </details>
+            <details class="faq-item">
+                <summary>Какие документы идут с поставкой?</summary>
+                <p>Паспорт партии с фактической маркой, сертификат соответствия, протокол лабораторных испытаний (по запросу), ТТН и счёт-фактура.</p>
+            </details>
+            <details class="faq-item">
+                <summary>Что если объект далеко — работаете с регионами?</summary>
+                <p>Да, возим по всей области и в соседние регионы. Стоимость доставки рассчитываем по километражу, без скрытых надбавок.</p>
+            </details>
+            <details class="faq-item">
+                <summary>Есть ли гарантия и что делать при браке?</summary>
+                <p>Гарантия соответствия марке — в договоре. Если независимая экспертиза подтвердит несоответствие, меняем партию за свой счёт и компенсируем простой.</p>
+            </details>
+        </div>
+    </div>
+</section>
+
+<!-- ===================== FINAL CTA ===================== -->
+<section class="final-cta" id="contact">
+    <div class="wrap">
+        <h2>Оставьте заявку — посчитаем за 1 рабочий день</h2>
+        <p>Опишите проект в двух строках: что строим, какой объём, нужны ли доставка и монтаж. Перезвоним в течение часа в рабочее время.</p>
+        <div class="row">
+            <a href="tel:+70000000000" class="btn btn-primary btn-lg">Позвонить в офис</a>
+            <a href="mailto:zakaz@mir-betona33.ru" class="btn btn-ghost btn-lg" style="color:#fff; border-color:#475569;">Написать на почту</a>
+        </div>
+        <p style="margin-top:24px; color:#94a3b8; font-size:14px;">Пн–Пт 8:00–18:00 · Сб 9:00–14:00 · Вс — выходной</p>
+
+        <div class="wholesale">
+            <strong>Крупные заказы</strong> (от 500 м³, ЖК, подряд, госзакупки) — индивидуальные условия, отсрочка, фиксированный график поставок.<br>
+            Звоните напрямую: <a href="tel:+70000000000">+7 (000) 000-00-00</a> · <a href="mailto:opt@mir-betona33.ru">opt@mir-betona33.ru</a>
+        </div>
+    </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer>
+    <div class="wrap row">
+        <div>© 2024 mir-betona33.ru · Производство и поставка ЖБИ</div>
+        <div>ИНН [ВСТАВИТЬ] · ОГРН [ВСТАВИТЬ]</div>
+    </div>
+</footer>
+
+</body>
+</html>
